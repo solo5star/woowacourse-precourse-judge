@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.woowacourse-projects:mission-utils:1.0.0'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// https://gist.github.com/matthiasbalke/3c9ecccbea1d460ee4c3fbc5843ede4a
+task resolveDependencies(group: "build setup", description: "Resolve and prefetch dependencies") {
+    doLast {
+        def resolve = {
+            ConfigurationContainer configurations ->
+                configurations
+                    .findAll({ Configuration c -> c.isCanBeResolved() })
+                    .each({ c -> c.resolve() })
+        }
+        project.rootProject.allprojects.each { subProject ->
+            resolve(subProject.buildscript.configurations)
+            resolve(subProject.configurations)
+        }
+    }
+}
+
+void resolveConfiguration(configuration) {
+    if (isResolveableConfiguration(configuration)) {
+        configuration.resolve()
+    }
+}
+
+boolean isResolveableConfiguration(configuration) {
+    def nonResolveableConfigurations = ['apiElements', 'implementation',
+                                        'runtimeElements', 'runtimeOnly',
+                                        'testImplementation', 'testRuntimeOnly',
+                                        'generatedImplementation', 'generatedRuntimeOnly']
+
+    if (nonResolveableConfigurations.contains(configuration.getName())) {
+        return false
+    }
+    return true
+}
