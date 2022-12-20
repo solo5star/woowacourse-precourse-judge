@@ -162,3 +162,4 @@ cython_debug/
 # judge output files
 /judge/*/*/pulls
 /judge/*/*/judge-outputs
+/judge/*/*/judge-results.tsv
