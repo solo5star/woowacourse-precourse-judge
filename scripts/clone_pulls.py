@@ -5,6 +5,7 @@ from functools import partial
 from dotenv import load_dotenv
 from git import Repo
 from github import Github
+from github.PullRequest import PullRequest
 from tqdm import tqdm
 
 load_dotenv()
@@ -24,7 +25,14 @@ os.chdir(WORKING_DIRECTORY)
 
 print(f"Get all pull requests from {r.full_name}")
 _pulls = r.get_pulls(PULL_STATE)
-pulls = list(tqdm(_pulls, unit="pulls", total=_pulls.totalCount))
+pulls: list[PullRequest] = list(tqdm(_pulls, unit="pulls", total=_pulls.totalCount))
+
+
+def is_pull_valid(pull: PullRequest):
+    return pull.head.repo is not None and pull.user.login != "ghost"
+
+
+pulls = list(filter(is_pull_valid, pulls))
 
 print("Writing pulls data to pulls.tsv ...")
 with open("pulls.tsv", mode="w", encoding="utf-8", newline="") as file:
