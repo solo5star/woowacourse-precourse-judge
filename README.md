@@ -64,6 +64,8 @@ $ python scripts/judge.py
 ```
 채점을 진행합니다. 시간이 다소 소요될 수 있습니다.
 
+> 채점에서 제외하고 싶은 Pull Request가 있다면 pulls.tsv 파일을 수정해주세요.
+
 ## 채점 결과
 
 채점 결과물은 모두 judge/{owner}/{repository_name} 에 저장됩니다.
