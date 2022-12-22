@@ -102,7 +102,9 @@ $ python scripts/judge.py
 * pulls.tsv: clone한 Pull Request 목록이 tsv 형식으로 저장됩니다.
 * README.md: 채점 결과를 요약하여 표시합니다.
 
-# woowacourse-precourse/java-menu: Pull Request Test Report
+## 샘플 채점 결과
+
+### woowacourse-precourse/java-menu: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -120,7 +122,7 @@ pie showData
     "Failed": 52
 ```
 
-# woowacourse-precourse/javascript-menu: Pull Request Test Report
+### woowacourse-precourse/javascript-menu: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -138,7 +140,7 @@ pie showData
     "Failed": 63
 ```
 
-## woowacourse-precourse/kotlin-menu: Pull Request Test Report
+### woowacourse-precourse/kotlin-menu: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -156,7 +158,7 @@ pie showData
     "Failed": 14
 ```
 
-## woowacourse/java-pairmatching-precourse: Pull Request Test Report
+### woowacourse/java-pairmatching-precourse: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -174,7 +176,7 @@ pie showData
     "Failed": 83
 ```
 
-## woowacourse/javascript-teammatching-precourse: Pull Request Test Report
+### woowacourse/javascript-teammatching-precourse: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
