@@ -37,13 +37,18 @@ class JudgeResult:
 async def judge(username: str, timeout: int | None = 60):
     async with aiodocker.Docker() as docker:
         pull_dir = os.path.join(os.getcwd(), f"pulls/{username}")
+        overrides_dir = os.path.join(os.getcwd(), f"overrides")
+
         container: DockerContainer = await docker.containers.run(
             config={
                 "Image": JUDGE_VM_DOCKER_IMAGE,
                 "AttachStdout": True,
                 "AttachStderr": True,
                 "HostConfig": {
-                    "Binds": [f"{pull_dir}:/code:ro"],
+                    "Binds": [
+                        f"{pull_dir}:/code:ro",
+                        f"{overrides_dir}:/overrides:ro",
+                    ],
                     "NetworkMode": "none",
                 },
             },
