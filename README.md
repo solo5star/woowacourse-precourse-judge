@@ -102,40 +102,40 @@ $ python scripts/judge.py
 * pulls.tsv: clone한 Pull Request 목록이 tsv 형식으로 저장됩니다.
 * README.md: 채점 결과를 요약하여 표시합니다.
 
-## woowacourse-precourse/javascript-menu: Pull Request Test Report
-
-> 테스트 환경에 따라 차이가 발생할 수 있습니다.
-
-Total Pulls: **103**
-
-Total Passed: **38**
-
-Total Failed: **65**
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
-pie showData
-    title Test Result
-    "Passed": 38
-    "Failed": 65
-```
-
-## woowacourse-precourse/java-menu: Pull Request Test Report
+# woowacourse-precourse/java-menu: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
 Total Pulls: **202**
 
-Total Passed: **142**
+Total Passed: **150**
 
-Total Failed: **60**
+Total Failed: **52**
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
-    "Passed": 142
-    "Failed": 60
+    "Passed": 150
+    "Failed": 52
+```
+
+# woowacourse-precourse/javascript-menu: Pull Request Test Report
+
+> 테스트 환경에 따라 차이가 발생할 수 있습니다.
+
+Total Pulls: **103**
+
+Total Passed: **40**
+
+Total Failed: **63**
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
+pie showData
+    title Test Result
+    "Passed": 40
+    "Failed": 63
 ```
 
 ## woowacourse-precourse/kotlin-menu: Pull Request Test Report
