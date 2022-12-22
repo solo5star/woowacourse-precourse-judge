@@ -51,6 +51,7 @@ async def judge(username: str, timeout: int | None = 60):
         try:
             result = await container.wait(timeout=timeout)
         except asyncio.TimeoutError as error:
+            await container.delete(force=True)
             return JudgeResult(
                 username=username,
                 success=False,
