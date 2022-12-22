@@ -1,10 +1,14 @@
 freeze:
 	pip freeze > requirements.txt
 
-build: build-node14 build-java11
+vm: vm-node vm-java
 
-build-node14:
-	docker build --tag woowacourse-precourse-judge/vm-node:14 ./vm/node14
+vm-node:
+	docker build --tag woowacourse-precourse-judge/vm-node:14-jest ./vm/node/14-jest
+	docker build --tag woowacourse-precourse-judge/vm-node:14-cypress ./vm/node/14-cypress
 
-build-java11:
-	docker build --tag woowacourse-precourse-judge/vm-java:11 ./vm/java11
+vm-java:
+	docker build --tag woowacourse-precourse-judge/vm-java:11 ./vm/java/11
+
+vm-kotlin:
+	docker build --tag woowacourse-precourse-judge/vm-kotlin:1.6.20 ./vm/kotlin/1.6.20
