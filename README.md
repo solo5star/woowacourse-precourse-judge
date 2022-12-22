@@ -113,6 +113,7 @@ Total Passed: **38**
 Total Failed: **65**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
     "Passed": 38
@@ -130,6 +131,7 @@ Total Passed: **142**
 Total Failed: **60**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
     "Passed": 142
@@ -147,6 +149,7 @@ Total Passed: **33**
 Total Failed: **14**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
     "Passed": 33
@@ -164,6 +167,7 @@ Total Passed: **54**
 Total Failed: **83**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
     "Passed": 54
@@ -181,6 +185,7 @@ Total Passed: **10**
 Total Failed: **59**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00FF00', 'pie2': '#FF0000' }}}%%
 pie showData
     title Test Result
     "Passed": 10

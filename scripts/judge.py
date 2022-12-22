@@ -143,6 +143,7 @@ Total Passed: **{num_passed}**
 Total Failed: **{num_failed}**
 
 ```mermaid
+%%{{init: {{'theme': 'base', 'themeVariables': {{ 'pie1': '#00FF00', 'pie2': '#FF0000' }}}}}}%%
 pie showData
     title Test Result
     "Passed": {num_passed}
