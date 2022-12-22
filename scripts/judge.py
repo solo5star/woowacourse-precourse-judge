@@ -160,7 +160,7 @@ async def main():
     judge_tasks = [concurrency_limited_judge(username) for username in usernames]
 
     print("Judge processing ...")
-    judge_results: list[JudgeResult] = await tqdm.gather(*judge_tasks)
+    judge_results: list[JudgeResult] = await tqdm.gather(*judge_tasks, unit="PR")
 
     write_results(judge_results)
     write_report(judge_results)
