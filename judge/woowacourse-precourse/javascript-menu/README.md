@@ -2,13 +2,13 @@
 
 Total Pulls: **103**
 
-Total Passed: **38**
+Total Passed: **40**
 
-Total Failed: **65**
+Total Failed: **63**
 
 ```mermaid
 pie showData
     title Test Result
-    "Passed": 38
-    "Failed": 65
+    "Passed": 40
+    "Failed": 63
 ```

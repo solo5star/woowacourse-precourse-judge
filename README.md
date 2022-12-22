@@ -135,3 +135,54 @@ pie showData
     "Passed": 142
     "Failed": 60
 ```
+
+# woowacourse-precourse/kotlin-menu: Pull Request Test Report
+
+> 테스트 환경에 따라 차이가 발생할 수 있습니다.
+
+Total Pulls: **47**
+
+Total Passed: **33**
+
+Total Failed: **14**
+
+```mermaid
+pie showData
+    title Test Result
+    "Passed": 33
+    "Failed": 14
+```
+
+# woowacourse/java-pairmatching-precourse: Pull Request Test Report
+
+> 테스트 환경에 따라 차이가 발생할 수 있습니다.
+
+Total Pulls: **137**
+
+Total Passed: **54**
+
+Total Failed: **83**
+
+```mermaid
+pie showData
+    title Test Result
+    "Passed": 54
+    "Failed": 83
+```
+
+# woowacourse/javascript-teammatching-precourse: Pull Request Test Report
+
+> 테스트 환경에 따라 차이가 발생할 수 있습니다.
+
+Total Pulls: **69**
+
+Total Passed: **10**
+
+Total Failed: **59**
+
+```mermaid
+pie showData
+    title Test Result
+    "Passed": 10
+    "Failed": 59
+```
