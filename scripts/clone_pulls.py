@@ -1,5 +1,6 @@
 import csv
 import os
+import shutil
 from functools import partial
 
 from dotenv import load_dotenv
@@ -23,16 +24,33 @@ r = g.get_repo(GITHUB_REPOSITORY)
 os.makedirs(WORKING_DIRECTORY, exist_ok=True)
 os.chdir(WORKING_DIRECTORY)
 
-print(f"Get all pull requests from {r.full_name}")
-_pulls = r.get_pulls(PULL_STATE)
-pulls: list[PullRequest] = list(tqdm(_pulls, unit="pulls", total=_pulls.totalCount))
-
 
 def is_pull_valid(pull: PullRequest):
     return pull.head.repo is not None and pull.user.login != "ghost"
 
 
-pulls = list(filter(is_pull_valid, pulls))
+_pulls = r.get_pulls(PULL_STATE)
+pulls: list[PullRequest] = []
+
+print(f"Clone pull requests from {r.full_name}")
+pull_log = tqdm(total=0, position=2, bar_format="{desc}")
+for pull in tqdm(_pulls, total=_pulls.totalCount, position=1, unit="PR"):
+    pull_log.set_description(f"Clone {pull.head.label}")
+    if not is_pull_valid(pull):
+        continue
+
+    pull_dir = f"pulls/{pull.user.login}"
+    if os.path.exists(pull_dir):
+        pull_log.set_description(f"{pull_dir} exists. clean directory ...")
+        shutil.rmtree(pull_dir)
+
+    try:
+        pull_log.set_description(f"Clone {pull.head.label} PR to {pull_dir} ...")
+        Repo.clone_from(pull.head.repo.clone_url, pull_dir, branch=pull.head.ref)
+        pulls.append(pull)
+    except:
+        pass
+
 
 print("Writing pulls data to pulls.tsv ...")
 with open("pulls.tsv", mode="w", encoding="utf-8", newline="") as file:
@@ -55,10 +73,3 @@ with open("pulls.tsv", mode="w", encoding="utf-8", newline="") as file:
                 "pushed_at": pull.head.repo.pushed_at,
             }
         )
-
-print(f"Clone pull requests from {r.full_name}")
-pull_log = tqdm(total=0, position=2, bar_format="{desc}")
-for pull in tqdm(pulls, position=1, unit="pulls"):
-    pull_log.set_description(f"Clone {pull.head.label}")
-    pulls_dir = f"pulls/{pull.user.login}"
-    Repo.clone_from(pull.head.repo.clone_url, pulls_dir, branch=pull.head.ref)
