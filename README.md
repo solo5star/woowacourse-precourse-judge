@@ -19,17 +19,14 @@
 GITHUB_TOKEN=YOUR_GITHUB_TOKEN
 GITHUB_REPOSITORY=woowacourse-precourse/javascript-menu
 PULL_STATE=open
-JUDGE_VM_DOCKER_IMAGE=woowacourse-precourse-judge/vm-node:14
+JUDGE_VM_DOCKER_IMAGE=woowacourse-precourse-judge/vm-node:14-jest
 JUDGE_LIMIT_CONCURRENCY=5
 ```
 
 * `GITHUB_TOKEN` 은 GitHub 개발자 설정에서 발급받을 수 있습니다.
 * `GITHUB_REPOSITORY` 는 채점할 레포지토리입니다.
 * `PULL_STATE` 는 open/close되어있는 Pull Request로 한정합니다.
-* `JUDGE_VM_DOCKER_IMAGE` 는 채점에 사용할 Docker 이미지입니다. 아래 두 개의 이미지를 지원합니다.
-  * woowacourse-precourse-judge/vm-node:14
-  * woowacourse-precourse-judge/vm-java:11
-  > woowacourse-precourse에서 제공하는 mission-utils 의존성이 포함되어 있습니다.
+* `JUDGE_VM_DOCKER_IMAGE` 는 채점에 사용할 Docker 이미지입니다. **채점용 Docker 이미지 목록**을 참고해주세요.
 * `JUDGE_LIMIT_CONCURRENCY` 는 동시에 채점할 갯수입니다.
   * 컴퓨터 사양에 따라 적당히 조절해주세요.
   * i5-10400 기준으로, javascript는 10, java는 5가 적당합니다.
@@ -37,11 +34,20 @@ JUDGE_LIMIT_CONCURRENCY=5
 ### 채점용 Docker 이미지 빌드
 
 ```sh
-$ make build
+$ make vm
 ```
-> java만 빌드하려면 `make build-java11`을, javascript만 빌드하려면 `make build-node14` 를 입력해주세요.
 
-## 파이썬 스크립트들을 실행하기 위한 dependency 설치
+### 채점용 Docker 이미지 목록
+|이미지 이름|설명|
+|-|-|
+|woowacourse-precourse-judge/vm-node:14-jest|node 14에서 jest로 테스트 시 사용합니다.|
+|woowacourse-precourse-judge/vm-node:14-cypress|node 14에서 cypress로 테스트 시 사용합니다.|
+|woowacourse-precourse-judge/vm-java:11|Java 11에서 gradle로 테스트 시 사용합니다.|
+|woowacourse-precourse-judge/vm-kotlin:1.6.20|Kotlin 1.6.20에서 gradle로 테스트 시 사용합니다.|
+
+위 이미지들은 모두 woowacourse-precourse에서 제공하는 mission-utils 의존성이 포함되어 있습니다.
+
+### 파이썬 스크립트들을 실행하기 위한 dependency 설치
 
 ```sh
 $ python -m venv .venv
@@ -57,6 +63,26 @@ $ python scripts/clone_pulls.py
 ```
 모든 Pull Request를 clone합니다. 시간이 다소 소요될 수 있습니다.
 
+### (optional) overrides 추가
+
+테스트를 지정하거나, 빌드 설정을 수정하고 싶을 때 overrides를 사용하세요.
+
+overrides 폴더를 만들고 파일을 추가하면 파일을 덮어씌운 후 채점을 진행하게 됩니다.
+
+`judge/{owner}/{repo}/overrides` 폴더를 생성한 후 덮어씌우고 싶은 파일을 추가하면 됩니다.
+
+```
+judge/
+  woowacourse-precourse/
+    javascript-menu/
+      overrides/
+        __tests__/
+          ApplicationTest.js
+        package.json
+```
+위는 `woowacourse-precourse/javascript-menu` 에 대해 overrides를 추가한 예시입니다.
+위의 예시에서는 overrides 폴더의 __tests__/ApplicationTest.js로 채점을 진행합니다.
+
 ### 채점
 
 ```sh
@@ -64,7 +90,7 @@ $ python scripts/judge.py
 ```
 채점을 진행합니다. 시간이 다소 소요될 수 있습니다.
 
-> 채점에서 제외하고 싶은 Pull Request가 있다면 pulls.tsv 파일을 수정해주세요.
+> 채점에서 제외하고 싶은 Pull Request가 있다면 스크립트를 실행하기 전에 pulls.tsv 파일을 수정해주세요.
 
 ## 채점 결과
 
