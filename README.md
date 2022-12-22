@@ -136,7 +136,7 @@ pie showData
     "Failed": 60
 ```
 
-# woowacourse-precourse/kotlin-menu: Pull Request Test Report
+## woowacourse-precourse/kotlin-menu: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -153,7 +153,7 @@ pie showData
     "Failed": 14
 ```
 
-# woowacourse/java-pairmatching-precourse: Pull Request Test Report
+## woowacourse/java-pairmatching-precourse: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
@@ -170,7 +170,7 @@ pie showData
     "Failed": 83
 ```
 
-# woowacourse/javascript-teammatching-precourse: Pull Request Test Report
+## woowacourse/javascript-teammatching-precourse: Pull Request Test Report
 
 > 테스트 환경에 따라 차이가 발생할 수 있습니다.
 
