@@ -37,13 +37,16 @@ pulls = list(filter(is_pull_valid, pulls))
 print("Writing pulls data to pulls.tsv ...")
 with open("pulls.tsv", mode="w", encoding="utf-8", newline="") as file:
     tw = csv.DictWriter(
-        file, delimiter="\t", fieldnames=["username", "url", "branch", "created_at", "updated_at", "pushed_at"]
+        file,
+        delimiter="\t",
+        fieldnames=["number", "username", "url", "branch", "created_at", "updated_at", "pushed_at"],
     )
     tw.writeheader()
 
     for pull in pulls:
         tw.writerow(
             {
+                "number": pull.number,
                 "username": pull.user.login,
                 "url": pull.head.repo.clone_url,
                 "branch": pull.head.ref,
